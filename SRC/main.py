@@ -37,6 +37,8 @@ try:
 
             print(f"Equipament: {equipament}")
 
+            #CRIAR FUNÇÃO PARA RECEBER NOME EQUIPAMENTO E NAVEGAR ENTRE AS PASTAS E ABRIR FACEPLATES CORRETOS
+
         
 
 except Exception as E:
