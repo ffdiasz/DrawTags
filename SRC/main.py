@@ -1,5 +1,5 @@
-from PIL import Image, ImageDraw, ImageFont
 import csv
+import FaceplateDraw
 
 tags_csv_path:str = "Tags/FaceplateAutomaticTags.csv"
 
@@ -35,11 +35,8 @@ try:
             #ignore void lines
             if (not equipament or not tag): continue
 
-            print(f"Equipament: {equipament}")
-
-            #CRIAR FUNÇÃO PARA RECEBER NOME EQUIPAMENTO E NAVEGAR ENTRE AS PASTAS E ABRIR FACEPLATES CORRETOS
-
-        
+            #Write tags on the faceplates and save
+            FaceplateDraw.DrawTag(equipament, tag)
 
 except Exception as E:
     print("[ERROR]: Não foi possivel abrir o arquivo")
