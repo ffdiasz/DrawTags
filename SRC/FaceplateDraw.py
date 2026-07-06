@@ -27,7 +27,7 @@ def DrawTag(equipament:str, tag:str):
             width, height = img.size
             CenterX = width * relativePosX
             pos1 = (CenterX, relativePosY)
-            pos2 = (CenterX, relativePosY + textSize)
+            pos2 = (CenterX, relativePosY + textSize + 2)
 
             # Draw text
             image.text(pos1, tag, fill=textColor, anchor="mm")

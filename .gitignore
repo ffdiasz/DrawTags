@@ -1,2 +1,3 @@
 venv
-/SRC/test
+SRC/__pycache__
+SRC/test.py

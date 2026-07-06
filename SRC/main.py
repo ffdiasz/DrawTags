@@ -1,7 +1,7 @@
 import csv
 import FaceplateDraw
 
-tags_csv_path:str = "Tags/FaceplateAutomaticTags.csv"
+tags_csv_path:str = r"SRC/Tags.csv"
 
 """ STEP-BY-STEP
 - Abrir CSV
