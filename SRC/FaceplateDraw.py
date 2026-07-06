@@ -4,7 +4,7 @@ import os
 #configs
 textSize = 10
 relativePosX = 0.5
-relativePosY = 0.025
+relativePosY = 15
 textColor = (255,255,255) #white
 
 def DrawTag(equipament:str, tag:str):
@@ -26,9 +26,8 @@ def DrawTag(equipament:str, tag:str):
             # Configure the position of tags on the faceplate
             width, height = img.size
             CenterX = width * relativePosX
-            CenterY = height * relativePosY
-            pos1 = (CenterX, CenterY)
-            pos2 = (CenterX, CenterY + textSize)
+            pos1 = (CenterX, relativePosY)
+            pos2 = (CenterX, relativePosY + textSize)
 
             # Draw text
             image.text(pos1, tag, fill=textColor, anchor="mm")
