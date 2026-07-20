@@ -1,6 +1,6 @@
-Equipamento,TAG
-GEN,GMG_A2
-PDU,PDU_A1_2
-ATS,CRAH_ATS_A1_2
-PQM, 1MSB_A1_PQM_1
-UPS, UPS_B1_1
+Equipamento,TAG,Descricao
+GEN,GMG_A2,Generators
+PDU,PDU_A1_2,Power Distribution Unit
+ATS,CRAH_ATS_A1_2,Automatic Transfer Switch
+PQM,1MSB_A1_PQM_1,Power Quality Meter
+UPS,UPS_B1_1,Uninterruptible Power Supply

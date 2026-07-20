@@ -1,37 +1,34 @@
 from PIL import Image, ImageDraw, ImageFont
+from configs import *
 import os
 
-#configs
-textSize = 10
-relativePosX = 0.5
-relativePosY = 15
-textColor = (255,255,255) #white
+configFaceplates = ConfigManager()
 
-def DrawTag(equipament:str, tag:str):
+def DrawTag(equipament:str, tag:str, description:str):
 
-    path = "Faceplates/Models/" + equipament
+    models_path = configFaceplates.FaceplatesPath + equipament
     
-    if (not os.path.exists(path)):
+    # Check if the equipament exists in the database
+    if (not os.path.exists(models_path)):
         print("[ERROR] Equipament do not found")
         print(f"confirm if the name '{equipament}' is correct or add this equipament in database")
         return False
     
-    tabs:str = ["ALARMS.png", "ASSETINFO.png", "HOME.png", "TRENDS.png"]
-
-    for tab in tabs:
+    # Draw the tag on each faceplate
+    for tab in configFaceplates.tabs:
         try:
-            img = Image.open(path + "/" + tab)
+            img = Image.open(models_path + "/" + tab)
             image = ImageDraw.Draw(img)
 
             # Configure the position of tags on the faceplate
             width, height = img.size
-            CenterX = width * relativePosX
-            pos1 = (CenterX, relativePosY)
-            pos2 = (CenterX, relativePosY + textSize + 2)
+            CenterX = width * configFaceplates.relativePosX
+            pos1 = (CenterX, configFaceplates.relativePosY)
+            pos2 = (CenterX, configFaceplates.relativePosY + configFaceplates.textSize + 2)
 
             # Draw text
-            image.text(pos1, tag, fill=textColor, anchor="mm")
-            image.text(pos2, tag, fill=textColor, anchor="mm")
+            image.text(pos1, tag, fill=configFaceplates.textColor, anchor="mm")
+            image.text(pos2, description, fill=configFaceplates.textColor, anchor="mm")
 
             #Save faceplate
             save(img, equipament, tab)
@@ -40,7 +37,7 @@ def DrawTag(equipament:str, tag:str):
             continue
 
         except Exception as e:
-            print(f"[ERROR] unexpected error: {e}")
+            print(f"[ERROR] Fail to write Tag: {e}")
             continue
 
 
@@ -63,5 +60,5 @@ def save(img, equipament:str, tab:str) -> bool:
         return False
 
     except Exception as e:
-        print(f"[ERROR] Unespected error: {e}")
+        print(f"[ERROR] Fail to save: {e}")
         return False

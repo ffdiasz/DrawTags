@@ -1,7 +1,6 @@
 import csv
 import FaceplateDraw
-
-tags_csv_path:str = r"SRC/Tags.csv"
+from configs import *
 
 """ STEP-BY-STEP
 - Abrir CSV
@@ -21,8 +20,10 @@ tags_csv_path:str = r"SRC/Tags.csv"
 
 #Try to open CSV
 
+configPaths = ConfigManager()
+
 try:
-    with open (tags_csv_path, mode='r', encoding='utf-8') as archive:
+    with open (configPaths.csvPath, mode='r', encoding='utf-8') as archive:
         
         #pass how to interpreter the csv
         read = csv.DictReader(archive, delimiter= ",")
@@ -31,12 +32,13 @@ try:
         for line in read:
             equipament:str = line.get("Equipamento", "")
             tag:str = line.get("TAG", "")
+            description:str = line.get("Descricao", "")
             
             #ignore void lines
             if (not equipament or not tag): continue
 
             #Write tags on the faceplates and save
-            FaceplateDraw.DrawTag(equipament, tag)
+            FaceplateDraw.DrawTag(equipament, tag, description)
 
 except Exception as E:
-    print("[ERROR]: Não foi possivel abrir o arquivo")
+    print(f"[ERROR]: Não foi possivel abrir o arquivo \nerror: {E}")
